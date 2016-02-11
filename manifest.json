@@ -1,0 +1,69 @@
+{
+    "extension": {
+        "name": "wakanda-extension-ioniccreator",
+        "version": "0.0.1",
+        "description": "Ionic Creator extension for Wakanda Studio",
+        "icon": "creator-icon.png",
+        "senders": [
+          {
+            "location": "studioToolBar",
+            "actionName": "ionicCreator",
+            "title": "Ionic Creator",
+            "menu": [
+              {
+                "actionName": "openCreator",
+                "title": "Open Ionic Creator"
+              },
+              {
+                "actionName": "importCreatorFolder",
+                "title": "Import Ionic Creator Project From Folder"
+              },
+              {
+                "actionName": "importCreatorZip",
+                "title": "Import Ionic Creator Project From Zip"
+              }
+            ]
+          }
+        ],
+        "actions": [
+            {
+              "name": "ionicCreator",
+              "title": "ionic creator"
+            },
+            {
+                "name": "openCreator",
+                "title": "Ionic Creator"
+            },
+            {
+                "name": "importCreatorFolder",
+                "title": "Import Ionic Creator Project From Folder"
+            },
+            {
+                "name": "importCreatorZip",
+                "title": "Import Ionic Creator Project From Zip"
+            },
+            {
+                "name": "studioStartHandler",
+                "title": "studio start handler",
+                "trigger": [
+                    { "event": "onStudioStart" }
+                ]
+            },
+            {
+                "name": "solutionOpenedHandler",
+                "title": "solution opened handler",
+                "trigger": [
+                    { "event": "onSolutionOpened" }
+                ]
+            },
+            {
+                "name": "solutionClosedHandler",
+                "title": "solution closed handler",
+                "trigger": [
+                    { "event": "onSolutionClosed" }
+                ]
+            }
+        ],
+        "lifetime": "application_lifetime"
+    }
+}

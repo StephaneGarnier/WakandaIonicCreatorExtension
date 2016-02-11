@@ -1,0 +1,19 @@
+{
+  "name": "wakanda-extension-ioniccreator",
+  "version": "0.0.1",
+  "description": "Ionic Creator extension for Wakanda Studio",
+  "scripts": {
+    "build": "node ./node_modules/gulp/bin/gulp.js build",
+    "watch": "node ./node_modules/gulp/bin/gulp.js watch",
+    "test": "echo \"No test provided\""
+  },
+  "author": "Wakanda SAS",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.1"
+  },
+  "hash": ""
+}

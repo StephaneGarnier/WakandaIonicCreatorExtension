@@ -1,0 +1,12 @@
+{
+  "name": "wakanda-extension-ioniccreator",
+  "description": "Ionic Creator extension for Wakanda Studio",
+  "authors": [
+    "Wakanda SAS"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+  }
+}
