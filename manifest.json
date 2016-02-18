@@ -20,7 +20,7 @@
               },
               {
                 "actionName": "importCreatorZip",
-                "title": "Import Ionic Creator Project From Zip"
+                "title": "Import Ionic Creator Project From Zip (Mac)"
               }
             ]
           }
@@ -40,7 +40,7 @@
             },
             {
                 "name": "importCreatorZip",
-                "title": "Import Ionic Creator Project From Zip"
+                "title": "Import Ionic Creator Project From Zip (Mac)"
             },
             {
                 "name": "studioStartHandler",
@@ -64,6 +64,6 @@
                 ]
             }
         ],
-        "lifetime": "application_lifetime"
+        "lifetime": "action_lifetime"
     }
 }

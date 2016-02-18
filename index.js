@@ -1,5 +1,5 @@
-var utils = require("../wakanda-extension-mobile-core/utils");
 var Base64 = require("base64");
+var shell = require("shellWorker")
 var actions = {};
 
 /*
@@ -29,37 +29,36 @@ actions.openCreator = function (event) {
 };
 
 actions.importCreatorZip = function (event) {
-  var file = studio.fileSelectDialog("zip");
-  if (file) {
-    var selectedProjects = studio.getSelectedProjects();
-    if (selectedProjects.length > 0) {
-      var destPath = selectedProjects[0];
-      destPath = destPath.substring(0, destPath.lastIndexOf("/"));
-      destPath += "/mobile/www";
-
-      utils.executeAsyncCmd({
-          cmd: os.isMac ? 'unzip -u -d ' + destPath + ' ' + file.path : 'extrac32.exe ' + file.path + ' /L ' + destPath + ' /Y',
-          options: {
-              consoleSilentMode: true
-          },
-          onmessage: function (msg) {
-            studio.log('Ionic creator project imported');
+  if (os.isMac) {
+    var file = studio.fileSelectDialog("zip");
+    if (file) {
+      var selectedProjects = studio.getSelectedProjects();
+      if (selectedProjects.length > 0) {
+        var destPath = selectedProjects[0];
+        destPath = destPath.substring(0, destPath.lastIndexOf("/"));
+        destPath += "/mobile/www";
+        try
+        {
+            msg = shell.exec('unzip -n -d ' + destPath + ' ' + file.path);
+            studio.log(msg);
             studio.alert('Ionic creator project imported');
-          },
-          onerror: function (msg) {
-              studio.alert('Error in Ionic creator import');
-          }
-      });
-      //copyFolder(folder.path, destPath);
-      studio.log('Ionic creator project imported');
-      studio.alert('Ionic creator project imported');
+        }
+        catch(e)
+        {
+                // catch any error here
+            msg = "error:" + e.message;
+            studio.log(msg);
+            studio.alert('Error in Ionic creator import');
+        }
+      }
+      else {
+        studio.alert('Please select a project');
+      }
     }
-    else {
-      studio.alert('Please select a project');
-    }
-
-
+  } else {
+    studio.alert('This function is not yet implemented for Windows');
   }
+
   // copyFolder(folder.path)
 };
 
@@ -115,13 +114,14 @@ function copyFolder(source, destination, toExclude) {
     }
 
     var destFolder = Folder(destination);
-    if(destFolder.exists) {
-        destFolder.remove();
+    if(!destFolder.exists) {
+        //destFolder.remove();
+        destFolder.create();
     }
-    destFolder.create();
+
 
     toExclude = toExclude || {
-      files: [],
+      files: ["routes.js"],
       folders: []
     };
 
@@ -130,8 +130,15 @@ function copyFolder(source, destination, toExclude) {
     }
 
     folder.files.forEach(function(file) {
+
         if(toExclude.files && toExclude.files.indexOf(file.path) === -1) {
-            file.copyTo(destination + file.name);
+
+          var fileAtDestination = new File(destination + file.name);
+            if (!fileAtDestination.exists) {
+              file.copyTo(destination + file.name);
+            }
+        }else {
+          studio.log(destination + file.name);
         }
     });
 
