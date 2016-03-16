@@ -7,7 +7,7 @@ Install in 3 steps:
 - Extract it
 - Copy the folder to your wakanda extension folder
 
-When you have done this three steps you just have to start wakanda studio and a ionic creator will appear in the toolbar
+When you have done these three steps you just have to start wakanda studio and a ionic creator will appear in the toolbar
 
 To use the extension:
 
